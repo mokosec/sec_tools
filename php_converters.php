@@ -106,7 +106,6 @@ function base64wide_decode($string)	{
 	// Converts powershell utf16le to utf8 -Strips the nulls from powershell type wide base64 decodes
 	$decoded = base64_decode($string);
 	$decoded = mb_convert_encoding($decoded, 'UTF-8', 'UTF-16LE');
-
 	return $decoded;
 }
 
@@ -141,16 +140,28 @@ function base64_sig($string)	{
 
 #################################
 function zlib_b64($string)	{
+
 	$decoded = zlib_decode(base64_decode($string));
+
+	if(!$decoded)	{
+		$decoded = "Error in decoding zlib\n";
+	}
+
 	return $decoded;
 }
 
 #################################
 function gzip_b64($string)	{
+
 	$decoded = gzdecode(base64_decode($string));
+	
+	if (!$decoded)	{
+		$decoded = "Error in decoding gzip\n";
+	}
+
 	return $decoded;
 }
-#################################
+
 #################################
 function decimal_decode($string)	{
 	if(preg_match("/([^\d])/",$string,$matches))	{
