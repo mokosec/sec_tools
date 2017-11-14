@@ -1,4 +1,8 @@
 <?php
+	//	@mokosec
+	//	Using php_curl to do standard GET requests over http and https
+	//
+
 	$header_content ="<!DOCTYPE html>\n<html>\n<head>\n<title>CurlIt</title>\n";
 	$header_content .='<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -112,27 +116,10 @@ function cert_info($url)	{
 			}
 		}
 	}
-
 	return $cert_detail;
 
-
 }
 
-#################################
-
-function expand_value($val_array,$element) {
-
-	foreach( $val_array as $k => $v )	{
-			if( is_array($v) )	{
-				expand_value($val_array,$element);
-			}
-			else	{
-				$element .= "\t$k:\t$v\n";
-			}
-	}
-
-	return $element;
-}
 
 #################################
 
@@ -146,8 +133,6 @@ function generateRandomString($length = 7) {
     }
     return $randomString;
 }
-
-
 
 	
 ?>
